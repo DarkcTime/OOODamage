@@ -36,27 +36,42 @@
                   Header="Поиск"
                   Height="60"
                   >
-            <TextBox Name="TxtSearch"></TextBox>
+            <TextBox Name="TxtSearch" TextChanged="TxtSearch_TextChanged">
+                
+            </TextBox>
         </GroupBox>
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="0.3*"/>
             </Grid.RowDefinitions>
-            <DataGrid  Margin="10 5 10 5">
+            <DataGrid  Margin="10 5 10 5" Name="MainDataGrid"
+                       AutoGenerateColumns="False" 
+                       AlternatingRowBackground="Gray"
+                       IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="*" Header="Идентификатор"/>
-                    <DataGridTextColumn Width="*" Header="Пол"/>
-                    <DataGridTextColumn Width="*" Header="Имя"/>
-                    <DataGridTextColumn Width="*" Header="Фамилия"/>
-                    <DataGridTextColumn Width="*" Header="Отчество"/>
-                    <DataGridTextColumn Width="*" Header="Дата рождения"/>
-                    <DataGridTextColumn Width="*" Header="Телефон"/>
-                    <DataGridTextColumn Width="*" Header="Email"/>
-                    <DataGridTextColumn Width="*" Header="Добавление"/>
-                    <DataGridTextColumn Width="*" Header="Посещение"/>
-                    <DataGridTextColumn Width="*" Header="Кол-во посещений"/>
-                    <DataGridTextColumn Width="*" Header="Список тегов"/>
+                    <DataGridTextColumn Width="*" Header="Идентификатор"
+                                        Binding="{Binding ClientService.Client.IdClient}"/>
+                    <DataGridTextColumn Width="*" Header="Пол"
+                                        Binding="{Binding ClientService.Client.IdGender}"/>
+                    <DataGridTextColumn Width="*" Header="Имя"
+                                        Binding="{Binding ClientService.Client.FirstName}"/>
+                    <DataGridTextColumn Width="*" Header="Фамилия"
+                                        Binding="{Binding ClientService.Client.LastName}"/>
+                    <DataGridTextColumn Width="*" Header="Отчество"
+                                        Binding="{Binding ClientService.Client.MiddleName}"/>
+                    <DataGridTextColumn Width="*" Header="Дата рождения"
+                                        Binding="{Binding BirthDate}"/>
+                    <DataGridTextColumn Width="*" Header="Телефон"
+                                        Binding="{Binding ClientService.Client.Phone}"/>
+                    <DataGridTextColumn Width="*" Header="Email"
+                                        Binding="{Binding ClientService.Client.Email}"/>
+                    <DataGridTextColumn Width="*" Header="Добавление"
+                                        Binding="{Binding RegDate}"/>
+                    <DataGridTextColumn Width="*" Header="Посещение"
+                                        Binding="{Binding DateTimeStart}"/>
+                    <DataGridTextColumn Width="*" Header="Кол-во посещений"
+                                        Binding="{Binding CountService}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Grid Grid.Row="1">
@@ -71,7 +86,14 @@
                 <GroupBox Style="{StaticResource StyleGroupBoxTextSmall}"
                           Header="Пол"
                           Grid.Column="2">
-                    <ComboBox Style="{StaticResource StyleComboBox}"/>
+                    <ComboBox Name="ComboBoxGender" 
+                              Style="{StaticResource StyleComboBox}"
+                              SelectedIndex="0"
+                              SelectionChanged="ComboBoxGender_SelectionChanged">
+                        <ComboBoxItem>Все</ComboBoxItem>
+                        <ComboBoxItem>Мужчина</ComboBoxItem>
+                        <ComboBoxItem>Женщина</ComboBoxItem>
+                    </ComboBox>
                 </GroupBox>
             </Grid>
         </Grid>
@@ -86,11 +108,13 @@
                 Добавить
             </Button>
             <Button Grid.Column="1" 
-                    Style="{StaticResource StyleButtonWidth}">
+                    Style="{StaticResource StyleButtonWidth}"
+                    Click="EditClick">
                 Редактировать
             </Button>
             <Button Grid.Column="2" 
-                    Style="{StaticResource StyleButtonWidthRed}">
+                    Style="{StaticResource StyleButtonWidthRed}"
+                    Click="RemoveClick">
                 Удалить
             </Button>
         </Grid>
