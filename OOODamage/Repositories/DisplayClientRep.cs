@@ -30,7 +30,9 @@ namespace OOODamage.Repositories
                  || i.Client.LastName.Contains(search)
                  || i.Client.Email.Contains(search)
                  || i.Client.Phone.Contains(search)).ToList();
-            }           
+            }
+
+            clientServices = OrderClients(clientServices);
 
             return clientServices.Select(i => new DisplayClient()
             {
@@ -39,9 +41,20 @@ namespace OOODamage.Repositories
                 RegDate = i.Client.RegDate.ToString(),
                 DateTimeStart = i.DateTimeStart.ToString(),
                 CountService = context.ClientServices.Where(b => b.IdClient == i.IdClient).Count()
-            }).ToList(); 
+            }).ToList()
+            .OrderByDescending(i => i.CountService)
+            .OrderByDescending(i => i.ClientService.DateTimeStart)
+            .OrderBy(i => i.ClientService.Client.LastName)
+            .ToList(); 
         }
 
+        private List<ClientService> OrderClients(List<ClientService> clientServices)
+        {
+            return clientServices.ToList().OrderBy(i => i.Client.MiddleName)
+                .ToList()
+                .OrderByDescending(i => i.DateTimeStart)
+                .ToList();
+        }
 
         public int CountRecords(List<DisplayClient> clients)
         {
