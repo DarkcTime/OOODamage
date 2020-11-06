@@ -81,7 +81,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Style="{StaticResource StyleButtonWidth}">
+            <Button Style="{StaticResource StyleButtonWidth}"
+                    Click="AddClick">
                 Добавить
             </Button>
             <Button Grid.Column="1" 

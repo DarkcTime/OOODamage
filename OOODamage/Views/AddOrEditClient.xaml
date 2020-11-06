@@ -5,9 +5,137 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OOODamage.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="800"
       Title="AddOrEditClient">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="1">
+                <Label.Content>
+                    <TextBlock FontSize="22" Name="TextBlockEditOrAddClient"/>
+                </Label.Content>
+            </Label>
+            <Image Source="/OOODamage;component/Resource/service_logo.png"
+                   Height="50" Width="80"
+                   HorizontalAlignment="Left"
+                   Margin="10 0 0 0"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock HorizontalAlignment="Center">Id:2</TextBlock>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Style="{StaticResource StyleGroupBoxTextSmall}"
+                          Grid.Row="1"
+                          Header="Имя">
+                        <TextBox Style="{StaticResource StyleTextBoxSmall}"/>
+                    </GroupBox>
+                    <GroupBox Style="{StaticResource StyleGroupBoxTextSmall}"
+                          Grid.Column="1"
+                          Header="Фамилия">
+                        <TextBox Style="{StaticResource StyleTextBoxSmall}"/>
+                    </GroupBox>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Style="{StaticResource StyleGroupBoxTextSmall}"
+                          Grid.Row="1"
+                          Header="Отчество">
+                        <TextBox Style="{StaticResource StyleTextBoxSmall}"/>
+                    </GroupBox>
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Style="{StaticResource StyleGroupBoxTextSmall}"
+                          Grid.Row="1"
+                          Header="Email">
+                        <TextBox Style="{StaticResource StyleTextBoxSmall}"/>
+                    </GroupBox>
+                    <GroupBox Style="{StaticResource StyleGroupBoxTextSmall}"
+                          Grid.Column="1"
+                          Header="Телефон">
+                        <TextBox Style="{StaticResource StyleTextBoxSmall}"/>
+                    </GroupBox>
+                </Grid>
+                <GroupBox Header="Дата рождения" Grid.Row="4" Style="{StaticResource StyleGroupBoxTextSmall}">
+                    <DatePicker Height="40"></DatePicker>
+                </GroupBox>
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="5" 
+                            HorizontalAlignment="Center">
+                        <RadioButton Margin="10">Мужской</RadioButton>
+                        <RadioButton Margin="10">Женский</RadioButton>
+                    </StackPanel>
+                </Grid>
+               
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Height="150"
+                        Width="150">
+                    Фото 
+                </Button>
+            </Grid>
+        </Grid>
         
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource StyleButtonWidth}"
+                    Name="BtnEditOrAdd"/>
+            <Button Style="{StaticResource StyleButtonWidthRed}"
+                    Grid.Column="1"
+                    Content="Отмена"
+                    />
+        </Grid>
     </Grid>
 </Page>

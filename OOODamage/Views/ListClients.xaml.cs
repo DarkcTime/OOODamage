@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OOODamage.BackEnd;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace OOODamage.Views
         public ListClients()
         {
             InitializeComponent();
+        }
+
+        private void AddClick(object sender, RoutedEventArgs e)
+        {
+            SharedClass.OpenNewPage(this, new AddOrEditClient());
         }
     }
 }
