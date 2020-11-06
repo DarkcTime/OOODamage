@@ -172,6 +172,7 @@
     <Compile Include="Models\WareHouse.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\ClientRep.cs" />
     <Compile Include="Repositories\DisplayClientRep.cs" />
     <Compile Include="Repositories\ModelRep.cs" />
     <Compile Include="Views\AddOrEditClient.xaml.cs">

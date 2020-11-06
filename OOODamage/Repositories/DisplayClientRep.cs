@@ -11,7 +11,8 @@ namespace OOODamage.Repositories
 
         public  List<DisplayClient> GetDisplayClients(string gender, string search)
         {
-            List<ClientService> clientServices = context.ClientServices.ToList();
+            //get uniqu records for clients
+            List<ClientService> clientServices = context.ClientServices.GroupBy(x => x.Client).Select(x => x.FirstOrDefault()).ToList();
 
             switch (gender)
             {
@@ -47,6 +48,13 @@ namespace OOODamage.Repositories
             .OrderBy(i => i.ClientService.Client.LastName)
             .ToList(); 
         }
+
+
+        public Client GetClient(DisplayClient displayClient)
+        {
+            return context.Clients.ToList().Where(i => i.IdClient == displayClient.ClientService.Client.IdClient).FirstOrDefault();
+        }
+
 
         private List<ClientService> OrderClients(List<ClientService> clientServices)
         {

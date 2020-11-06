@@ -10,5 +10,10 @@ namespace OOODamage.Repositories
     class ModelRep
     {
         protected static AutoServiceEntities context = new AutoServiceEntities(); 
+
+        protected void SaveChanges()
+        {
+            context.SaveChanges();
+        }
     }
 }

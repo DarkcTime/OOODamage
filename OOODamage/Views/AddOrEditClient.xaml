@@ -61,12 +61,14 @@
                     <GroupBox Style="{StaticResource StyleGroupBoxTextSmall}"
                           Grid.Row="1"
                           Header="Имя">
-                        <TextBox Style="{StaticResource StyleTextBoxSmall}"/>
+                        <TextBox Style="{StaticResource StyleTextBoxSmall}"
+                                 Text="{Binding Path=FirstName}"/>
                     </GroupBox>
                     <GroupBox Style="{StaticResource StyleGroupBoxTextSmall}"
                           Grid.Column="1"
                           Header="Фамилия">
-                        <TextBox Style="{StaticResource StyleTextBoxSmall}"/>
+                        <TextBox Style="{StaticResource StyleTextBoxSmall}"
+                                 Text="{Binding Path=LastName}"/>
                     </GroupBox>
                 </Grid>
                 <Grid Grid.Row="2">
@@ -77,7 +79,8 @@
                     <GroupBox Style="{StaticResource StyleGroupBoxTextSmall}"
                           Grid.Row="1"
                           Header="Отчество">
-                        <TextBox Style="{StaticResource StyleTextBoxSmall}"/>
+                        <TextBox Style="{StaticResource StyleTextBoxSmall}"
+                                 Text="{Binding Path=MiddleName}"/>
                     </GroupBox>
                 </Grid>
                 <Grid Grid.Row="3">
@@ -88,16 +91,19 @@
                     <GroupBox Style="{StaticResource StyleGroupBoxTextSmall}"
                           Grid.Row="1"
                           Header="Email">
-                        <TextBox Style="{StaticResource StyleTextBoxSmall}"/>
+                        <TextBox Style="{StaticResource StyleTextBoxSmall}"
+                                 Text="{Binding Path=Email}"/>
                     </GroupBox>
                     <GroupBox Style="{StaticResource StyleGroupBoxTextSmall}"
                           Grid.Column="1"
                           Header="Телефон">
-                        <TextBox Style="{StaticResource StyleTextBoxSmall}"/>
+                        <TextBox Style="{StaticResource StyleTextBoxSmall}"
+                                 Text="{Binding Path=Phone}"/>
                     </GroupBox>
                 </Grid>
                 <GroupBox Header="Дата рождения" Grid.Row="4" Style="{StaticResource StyleGroupBoxTextSmall}">
-                    <DatePicker Height="40"></DatePicker>
+                    <DatePicker Height="40"
+                                SelectedDate="{Binding Path=BirthDate}"></DatePicker>
                 </GroupBox>
                 <Grid Grid.Row="5">
                     <Grid.ColumnDefinitions>
@@ -131,10 +137,12 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Style="{StaticResource StyleButtonWidth}"
-                    Name="BtnEditOrAdd"/>
+                    Name="BtnEditOrAdd"
+                    Click="EditOrAddClick"/>
             <Button Style="{StaticResource StyleButtonWidthRed}"
                     Grid.Column="1"
                     Content="Отмена"
+                    Click="BackClick"
                     />
         </Grid>
     </Grid>

@@ -22,27 +22,13 @@ namespace OOODamage.Views
     /// </summary>
     public partial class ListClients : Page
     {
-        Repositories.DisplayClientRep displayClientRep = new Repositories.DisplayClientRep(); 
+        Repositories.DisplayClientRep displayClientRep = new Repositories.DisplayClientRep();
+        Repositories.ClientRep clientRep = new Repositories.ClientRep();
         
         public ListClients()
         {
             InitializeComponent();
             UpdateList();             
-        }
-
-
-
-        private void AddClick(object sender, RoutedEventArgs e)
-        {
-            SharedClass.OpenNewPage(this, new AddOrEditClient());
-        }
-        private void EditClick(object sender, RoutedEventArgs e)
-        {
-            SharedClass.OpenNewPage(this, new AddOrEditClient());
-        }
-        private void RemoveClick(object sender, RoutedEventArgs e)
-        {
-            SharedClass.OpenNewPage(this, new AddOrEditClient());
         }
 
         private void UpdateList()
@@ -68,5 +54,47 @@ namespace OOODamage.Views
         {
             UpdateList(); 
         }
+
+        private void EditClick(object sender, RoutedEventArgs e)
+        {
+            if (IsSelectedClient())
+            {
+                Client client = displayClientRep.GetClient(GetSelectedDisplayClient());
+                SharedClass.OpenNewPage(this, new AddOrEditClient(client));
+            }
+        }
+        private void RemoveClick(object sender, RoutedEventArgs e)
+        {
+            if (IsSelectedClient())
+            {
+                Client client = displayClientRep.GetClient(GetSelectedDisplayClient());
+                clientRep.RemoveClient(client);
+                UpdateList();
+                SharedClass.MessageBoxInformation("Клиент успешно удален");            
+            }
+        }
+        private bool IsSelectedClient()
+        {
+            if (this.MainDataGrid.SelectedItem is DisplayClient)
+            {
+                return true;
+            }
+            else
+            {
+                SharedClass.MessageBoxWarning("Выберите клиента в таблице");
+                return false;
+            }
+        }
+        private DisplayClient GetSelectedDisplayClient()
+        {
+            return (DisplayClient)this.MainDataGrid.SelectedItem;
+        }
+
+
+        private void AddClick(object sender, RoutedEventArgs e)
+        {
+            SharedClass.OpenNewPage(this, new AddOrEditClient());
+        }
+
     }
 }
