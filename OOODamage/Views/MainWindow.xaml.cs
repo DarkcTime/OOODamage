@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OOODamage.BackEnd;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace OOODamage
+namespace OOODamage.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -23,6 +24,7 @@ namespace OOODamage
         public MainWindow()
         {
             InitializeComponent();
+            SharedClass.SetFrame(this.MainFrame, new ListClients());
         }
     }
 }
