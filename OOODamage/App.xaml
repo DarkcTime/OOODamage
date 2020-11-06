@@ -19,7 +19,6 @@
         </Style>
         <!--Label-->
         <Style x:Key="LabelStyle" TargetType="Label" BasedOn="{StaticResource Standart}">
-            <Setter Property="FontSize" Value="18"></Setter>
             <Setter Property="FontWeight" Value="Bold"></Setter>
         </Style>
         <Style TargetType="Label" BasedOn="{StaticResource LabelStyle}">
