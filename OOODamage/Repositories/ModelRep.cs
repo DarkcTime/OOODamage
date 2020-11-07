@@ -15,7 +15,7 @@ namespace OOODamage.Repositories
         /// <summary>
         /// Model object 
         /// </summary>
-        protected static AutoServiceEntities context = new AutoServiceEntities(); 
+        protected static PolomcaEntities context = new PolomcaEntities(); 
 
         /// <summary>
         /// Save changes method

@@ -119,8 +119,10 @@ namespace OOODamage.Views
             {
                 string path = ImageUtilities.SelectImage();
                 if (path != "null")
-                    this.ImgClient.Source = new BitmapImage(new Uri(path, UriKind.Relative)); ;
-                SetPhotoForClient(path);
+                {
+                    Client.Photo = ImageUtilities.ConvertImageToByte(path);
+                    this.ImgClient.Source = new BitmapImage(new Uri(path));
+                }                               
             }
             catch(Exception ex)
             {
@@ -130,11 +132,6 @@ namespace OOODamage.Views
         }
         #endregion
 
-        private void SetPhotoForClient(string path)
-        {
-            Client.Photo = path; 
-
-        }
         private void SetGenderDisplay()
         {
             if (this.Client.IdGender == "м") this.Man.IsChecked = true;

@@ -139,7 +139,8 @@
                         Click="SelectPhoto">
                     <Button.Content>
                         <Image Name="ImgClient" 
-                               Source="{Binding Path=ClientPhoto.Photo}"></Image>
+                               Source="{Binding Path=Photo, 
+                            UpdateSourceTrigger=PropertyChanged}"></Image>
                     </Button.Content> 
                 </Button>
             </Grid>

@@ -23,7 +23,7 @@ namespace OOODamage.Models
     
         public int IdService { get; set; }
         public string NameService { get; set; }
-        public string Decription { get; set; }
+        public string Description { get; set; }
         public decimal Price { get; set; }
         public Nullable<decimal> Discount { get; set; }
         public int TimeDuration { get; set; }

@@ -12,49 +12,45 @@ namespace OOODamage.Repositories
         public  List<DisplayClient> GetDisplayClients(int gender, string search)
         {
             //get uniqu records for clients
-            List<ClientService> clientServices = context.ClientServices.GroupBy(x => x.Client).Select(x => x.FirstOrDefault()).ToList();
+            List<Client> clients = context.Clients.ToList();
 
             switch (gender)
             {
                 case 0:
                     break; 
                 case 1:
-                    clientServices = clientServices.Where(i => i.Client.IdGender == "м").ToList();
+                    clients = clients.Where(i => i.IdGender == "м").ToList();
                     break;
                 case 2:
-                    clientServices = clientServices.Where(i => i.Client.IdGender == "ж").ToList();
+                    clients = clients.Where(i => i.IdGender == "ж").ToList();
                     break;
             }
-
+          
             if (!string.IsNullOrWhiteSpace(search))
             {
-                clientServices = clientServices.Where(i => i.Client.FirstName.Contains(search)
-                 || i.Client.MiddleName.Contains(search)
-                 || i.Client.LastName.Contains(search)
-                 || i.Client.Email.Contains(search)
-                 || i.Client.Phone.Contains(search)).ToList();
+                clients = clients.Where(i => i.FirstName.Contains(search)
+                 || i.MiddleName.Contains(search)
+                 || i.LastName.Contains(search)
+                 || i.Email.Contains(search)).ToList(); 
+                 //|| i.Client.Phone.Contains(search)).ToList();
             }
 
-            clientServices = OrderClients(clientServices);
-
-            return clientServices.Select(i => new DisplayClient()
+        
+            return clients.Select(i => new DisplayClient()
             {
-                ClientService = i,
-                BirthDate = i.Client.BirhDate.ToString(),
-                RegDate = i.Client.RegDate.ToString(),
-                DateTimeStart = i.DateTimeStart.ToString(),
-                CountService = context.ClientServices.Where(b => b.IdClient == i.IdClient).Count()
+                Client = i,
+                BirthDate = i.BirhDate.ToString(),
+                RegDate = i.RegDate.ToString()                
             }).ToList()
             .OrderByDescending(i => i.CountService)
-            .OrderByDescending(i => i.ClientService.DateTimeStart)
-            .OrderBy(i => i.ClientService.Client.LastName)
+            .OrderBy(i => i.Client.LastName)
             .ToList(); 
         }
 
 
         public Client GetClient(DisplayClient displayClient)
         {
-            return context.Clients.ToList().Where(i => i.IdClient == displayClient.ClientService.Client.IdClient).FirstOrDefault();
+            return context.Clients.ToList().Where(i => i.IdClient == displayClient.Client.IdClient).FirstOrDefault();
         }
 
 

@@ -26,17 +26,12 @@ namespace OOODamage.Models
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string IdGender { get; set; }
-        public string Phone { get; set; }
-        public string Photo { get; set; }
         public System.DateTime BirhDate { get; set; }
         public string Email { get; set; }
         public System.DateTime RegDate { get; set; }
-        public Nullable<int> IdTag { get; set; }
-        public Nullable<int> BonusCardId { get; set; }
-        public Nullable<int> IdPhoto { get; set; }
+        public byte[] Photo { get; set; }
+        public string Phone { get; set; }
     
-        public virtual BonusCard BonusCard { get; set; }
-        public virtual ClientPhoto ClientPhoto { get; set; }
         public virtual Gender Gender { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClientService> ClientServices { get; set; }

@@ -56,15 +56,12 @@ namespace OOODamage.Repositories
             SaveChanges();
         }
 
+        /*
         public int AddPhotoForClient(string path)
         {
-            ClientPhoto clientPhoto = new ClientPhoto();
-            clientPhoto.Photo = ImageUtilities.ConvertImageToByte(path);
-            context.ClientPhotoes.Add(clientPhoto);
-            SaveChanges();
-            int idNewPhoto = context.ClientPhotoes.ToList().Max().IdClientPhoto;
-            return idNewPhoto; 
+            context.Clients.First().Photo
         }
+        */
 
         public void EditClient(Client client)
         {

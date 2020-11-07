@@ -18,7 +18,6 @@ namespace OOODamage.Models
         public Product()
         {
             this.ProductHistories = new HashSet<ProductHistory>();
-            this.ProductOnWareHouses = new HashSet<ProductOnWareHouse>();
             this.ProductParents = new HashSet<ProductParent>();
             this.ProductParents1 = new HashSet<ProductParent>();
         }
@@ -28,7 +27,7 @@ namespace OOODamage.Models
         public int IdProdCategory { get; set; }
         public decimal Price { get; set; }
         public string Specifications { get; set; }
-        public string Decription { get; set; }
+        public string Description { get; set; }
         public double Weight { get; set; }
         public double Width { get; set; }
         public double Height { get; set; }
@@ -45,8 +44,6 @@ namespace OOODamage.Models
         public virtual Season Season { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductHistory> ProductHistories { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductOnWareHouse> ProductOnWareHouses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductParent> ProductParents { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

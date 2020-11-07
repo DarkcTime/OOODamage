@@ -15,10 +15,10 @@ namespace OOODamage.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class AutoServiceEntities : DbContext
+    public partial class PolomcaEntities : DbContext
     {
-        public AutoServiceEntities()
-            : base("name=AutoServiceEntities")
+        public PolomcaEntities()
+            : base("name=PolomcaEntities")
         {
         }
     
@@ -27,10 +27,8 @@ namespace OOODamage.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<BonusCard> BonusCards { get; set; }
         public virtual DbSet<CategoryEmployee> CategoryEmployees { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
-        public virtual DbSet<ClientPhoto> ClientPhotoes { get; set; }
         public virtual DbSet<ClientService> ClientServices { get; set; }
         public virtual DbSet<ClientServiceDocument> ClientServiceDocuments { get; set; }
         public virtual DbSet<ClientTag> ClientTags { get; set; }
@@ -42,14 +40,12 @@ namespace OOODamage.Models
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         public virtual DbSet<ProductHistory> ProductHistories { get; set; }
-        public virtual DbSet<ProductOnWareHouse> ProductOnWareHouses { get; set; }
         public virtual DbSet<ProductParent> ProductParents { get; set; }
         public virtual DbSet<ProductPhoto> ProductPhotoes { get; set; }
         public virtual DbSet<Season> Seasons { get; set; }
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
-        public virtual DbSet<WareHouse> WareHouses { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

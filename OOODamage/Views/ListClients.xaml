@@ -46,28 +46,27 @@
                 <RowDefinition Height="0.3*"/>
             </Grid.RowDefinitions>
             <DataGrid  Margin="10 5 10 5" Name="MainDataGrid"
-                       AutoGenerateColumns="False" 
-                       AlternatingRowBackground="Gray"
+                       AutoGenerateColumns="False"
                        IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="*" Header="Идентификатор"
-                                        Binding="{Binding ClientService.Client.IdClient}"/>
+                                        Binding="{Binding Client.IdClient}"/>
                     <DataGridTextColumn Width="*" Header="Пол"
-                                        Binding="{Binding ClientService.Client.IdGender}"/>
+                                        Binding="{Binding Client.IdGender}"/>
                     <DataGridTextColumn Width="*" Header="Имя"
-                                        Binding="{Binding ClientService.Client.FirstName}"/>
+                                        Binding="{Binding Client.FirstName}"/>
                     <DataGridTextColumn Width="*" Header="Фамилия"
-                                        Binding="{Binding ClientService.Client.LastName}"/>
+                                        Binding="{Binding Client.LastName}"/>
                     <DataGridTextColumn Width="*" Header="Отчество"
-                                        Binding="{Binding ClientService.Client.MiddleName}"/>
+                                        Binding="{Binding Client.MiddleName}"/>
                     <DataGridTextColumn Width="*" Header="Дата рождения"
                                         Binding="{Binding BirthDate}"/>
                     <DataGridTextColumn Width="*" Header="Телефон"
-                                        Binding="{Binding ClientService.Client.Phone}"/>
+                                        Binding="{Binding Client.Phone}"/>
                     <DataGridTextColumn Width="*" Header="Email"
-                                        Binding="{Binding ClientService.Client.Email}"/>
+                                        Binding="{Binding Client.Email}"/>
                     <DataGridTextColumn Width="*" Header="Добавление"
-                                        Binding="{Binding RegDate}"/>
+                                        Binding="{Binding RegDate, StringFormat='{}{0:yyyy-MM-dd}'}"/>
                     <DataGridTextColumn Width="*" Header="Посещение"
                                         Binding="{Binding DateTimeStart}"/>
                     <DataGridTextColumn Width="*" Header="Кол-во посещений"

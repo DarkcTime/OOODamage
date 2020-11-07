@@ -17,7 +17,7 @@ namespace OOODamage.Models
         public int IdProductHistory { get; set; }
         public Nullable<int> IdProduct { get; set; }
         public Nullable<int> IdClientService { get; set; }
-        public Nullable<int> Qty { get; set; }
+        public Nullable<int> Count { get; set; }
     
         public virtual ClientService ClientService { get; set; }
         public virtual Product Product { get; set; }
