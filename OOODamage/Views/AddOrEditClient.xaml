@@ -51,8 +51,8 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock HorizontalAlignment="Center"
-                               Text="{Binding Path=ClientId}"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" 
+                               Name="TxtBlockId"></TextBlock>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -63,13 +63,15 @@
                           Grid.Row="1"
                           Header="Имя">
                         <TextBox Style="{StaticResource StyleTextBoxSmall}"
-                                 Text="{Binding Path=FirstName}"/>
+                                 Text="{Binding Path=FirstName}"
+                                 MaxLength="50"/>
                     </GroupBox>
                     <GroupBox Style="{StaticResource StyleGroupBoxTextSmall}"
                           Grid.Column="1"
                           Header="Фамилия">
                         <TextBox Style="{StaticResource StyleTextBoxSmall}"
-                                 Text="{Binding Path=LastName}"/>
+                                 Text="{Binding Path=LastName}"
+                                 MaxLength="50"/>
                     </GroupBox>
                 </Grid>
                 <Grid Grid.Row="2">
@@ -81,7 +83,8 @@
                           Grid.Row="1"
                           Header="Отчество">
                         <TextBox Style="{StaticResource StyleTextBoxSmall}"
-                                 Text="{Binding Path=MiddleName}"/>
+                                 Text="{Binding Path=MiddleName}"
+                                 MaxLength="50"/>
                     </GroupBox>
                 </Grid>
                 <Grid Grid.Row="3">
@@ -99,7 +102,10 @@
                           Grid.Column="1"
                           Header="Телефон">
                         <TextBox Style="{StaticResource StyleTextBoxSmall}"
-                                 Text="{Binding Path=Phone}"/>
+                                 Text="{Binding Path=Phone}"
+                                 Name="TxtPhone"
+                                 />
+                        
                     </GroupBox>
                 </Grid>
                 <GroupBox Header="Дата рождения" Grid.Row="4" Style="{StaticResource StyleGroupBoxTextSmall}">

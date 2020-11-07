@@ -20,59 +20,101 @@ namespace OOODamage.Views
     /// <summary>
     /// Interaction logic for ListClients.xaml
     /// </summary>
-    public partial class ListClients : Page
+    public partial class ListClients : Page 
     {
+        //create object Repositories
         Repositories.DisplayClientRep displayClientRep = new Repositories.DisplayClientRep();
         Repositories.ClientRep clientRep = new Repositories.ClientRep();
         
         public ListClients()
         {
-            InitializeComponent();
-            UpdateList();             
+            try
+            {
+                InitializeComponent();
+                UpdateList();
+            }
+            catch(Exception ex)
+            {
+                SharedClass.MessageBoxError(ex); 
+            }
+                         
         }
 
+        #region LoadPage
         private void UpdateList()
         {
-            List<DisplayClient> displayClients = new List<DisplayClient>();
-            displayClients = null;
-            displayClients = displayClientRep.GetDisplayClients(this.ComboBoxGender.SelectedIndex, this.TxtSearch.Text);
-            this.MainDataGrid.ItemsSource = displayClients;
-            SetTextBlockCountRecords(displayClientRep.CountRecords(displayClients));
-        }
-      
+            try
+            {
+                List<DisplayClient> displayClients = new List<DisplayClient>();
+                displayClients = null;
+                displayClients = displayClientRep.GetDisplayClients(this.ComboBoxGender.SelectedIndex, this.TxtSearch.Text);
+                this.MainDataGrid.ItemsSource = displayClients;
+                SetTextBlockCountRecords(displayClientRep.CountRecords(displayClients));
+            }
+            catch(Exception ex)
+            {
+                SharedClass.MessageBoxError(ex);
+            }
+        }      
         private void SetTextBlockCountRecords(int count)
         {
             this.TextBlockCountRecords.Text = $"Количество записей: {count}";
         }
+        #endregion
 
-        private void TxtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        #region UI Events
+        private void AddClick(object sender, RoutedEventArgs e)
         {
-            UpdateList();   
+            SharedClass.OpenNewPage(this, new AddOrEditClient());
         }
-
-        private void ComboBoxGender_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            UpdateList(); 
-        }
-
         private void EditClick(object sender, RoutedEventArgs e)
         {
-            if (IsSelectedClient())
+            try
             {
-                Client client = displayClientRep.GetClient(GetSelectedDisplayClient());
-                SharedClass.OpenNewPage(this, new AddOrEditClient(client));
+
+                if (IsSelectedClient())
+                {
+                    Client client = displayClientRep.GetClient(GetSelectedDisplayClient());
+                    SharedClass.OpenNewPage(this, new AddOrEditClient(client));
+                }
+            }
+            catch(Exception ex)
+            {
+                SharedClass.MessageBoxError(ex);
             }
         }
         private void RemoveClick(object sender, RoutedEventArgs e)
         {
-            if (IsSelectedClient())
+            try
             {
-                Client client = displayClientRep.GetClient(GetSelectedDisplayClient());
-                clientRep.RemoveClient(client);
-                UpdateList();
-                SharedClass.MessageBoxInformation("Клиент успешно удален");            
+                if (SharedClass.MessageBoxQuestion("Вы уверены что хотите удалить клиента?") == MessageBoxResult.No)
+                    return;
+
+                if (IsSelectedClient())
+                {
+                    Client client = displayClientRep.GetClient(GetSelectedDisplayClient());
+                    clientRep.RemoveClient(client);
+                    UpdateList();
+                    SharedClass.MessageBoxInformation("Клиент успешно удален");
+                }
             }
+            catch(Exception ex)
+            {
+                SharedClass.MessageBoxError(ex);    
+            }
+           
         }
+        private void TxtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateList();
+        }
+        private void ComboBoxGender_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateList();
+        }
+
+        #endregion
+
         private bool IsSelectedClient()
         {
             if (this.MainDataGrid.SelectedItem is DisplayClient)
@@ -91,10 +133,7 @@ namespace OOODamage.Views
         }
 
 
-        private void AddClick(object sender, RoutedEventArgs e)
-        {
-            SharedClass.OpenNewPage(this, new AddOrEditClient());
-        }
+       
 
     }
 }

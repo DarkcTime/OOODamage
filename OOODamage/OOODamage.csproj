@@ -82,7 +82,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BackEnd\SharedClass.cs" />
-    <Compile Include="BackEnd\Utilities.cs" />
+    <Compile Include="BackEnd\ImageUtilities.cs" />
     <Compile Include="Models\BonusCard.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>

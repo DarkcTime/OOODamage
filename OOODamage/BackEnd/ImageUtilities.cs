@@ -9,8 +9,15 @@ using System.Threading.Tasks;
 
 namespace OOODamage.BackEnd
 {
-    class Utilities
+    /// <summary>
+    /// Class for work with Images
+    /// </summary>
+    class ImageUtilities
     {
+        /// <summary>
+        /// open dialog window for select image
+        /// </summary>
+        /// <returns>path image</returns>
         public static string SelectImage()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -23,21 +30,19 @@ namespace OOODamage.BackEnd
 
             return "null";             
         }
-
+        /// <summary>
+        /// Convert Image to byte for add in BD
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public static byte[] ConvertImageToByte(string path)
-        {
-            //создаем объект картинки
-            Bitmap image = new Bitmap(path);
-            //открываем поток для перевода картинки в байты 
+        {            
+            Bitmap image = new Bitmap(path);            
             using (MemoryStream ms = new MemoryStream())
-            {
-                //сохраняем картинку в поток 
+            {                
                 image.Save(ms, image.RawFormat);
-                //возращаем массив байт картинки
                 return ms.ToArray();
             }
-
-
         }
 
     }

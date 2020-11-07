@@ -21,10 +21,20 @@ namespace OOODamage.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// genarate main Window
+        /// </summary>
         public MainWindow()
         {
-            InitializeComponent();
-            SharedClass.SetFrame(this.MainFrame, new ListClients());
+            try
+            {
+                InitializeComponent();
+                SharedClass.SetFrame(this.MainFrame, new ListClients());
+            }
+            catch(Exception ex)
+            {
+                SharedClass.MessageBoxError(ex);
+            }
         }
     }
 }

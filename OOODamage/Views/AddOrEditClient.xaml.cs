@@ -15,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+ 
+
 namespace OOODamage.Views
 {
     /// <summary>
@@ -28,26 +30,41 @@ namespace OOODamage.Views
 
         public AddOrEditClient()
         {
-            InitializeComponent();
-            Client = new Client();
-            this.DataContext = Client;
+            try
+            {
+                InitializeComponent();
+                Client = new Client();
+                this.DataContext = Client;
+
+                MakeLabels(addStr);
+                this.Client.BirhDate = DateTime.Parse("08.08.2020");              
+            }
+            catch(Exception ex)
+            {
+                SharedClass.MessageBoxError(ex);
+            }
            
-            MakeLabels(addStr);
-            this.Client.BirhDate = DateTime.Parse("08.08.2020");
         }
 
         public AddOrEditClient(Client client)
         {
-            InitializeComponent();            
-            Client = client;
-            this.DataContext = Client;
-          
-            MakeLabels(editStr);
-            SetGenderDisplay(); 
+            try
+            {
+                InitializeComponent();
+                Client = client;
+                this.DataContext = Client;
+
+                MakeLabels(editStr);
+                SetGenderDisplay();
+                this.TxtBlockId.Text = $"Идентификатор: {client.IdClient.ToString()}"; 
+            }
+            catch(Exception ex)
+            {
+                SharedClass.MessageBoxError(ex);
+            }
+            
             
         }
-
-
 
         private void MakeLabels(string type)
         {
@@ -62,34 +79,56 @@ namespace OOODamage.Views
             }
         }
 
-
+        #region UI Events
         private void EditOrAddClick(object sender, RoutedEventArgs e)
         {
-            SetGenderClient();
-            if(this.BtnEditOrAdd.Content.ToString() == addStr)
+            try
             {
-                clientRep.AddClient(Client);
-                SharedClass.MessageBoxInformation("Клиент успешно добавлен");
+                SetGenderClient();
+                if (this.BtnEditOrAdd.Content.ToString() == addStr)
+                {
+                    clientRep.AddClient(Client);
+                    SharedClass.MessageBoxInformation("Клиент успешно добавлен");
+                }
+                else
+                {
+                    clientRep.EditClient(Client);
+                    SharedClass.MessageBoxInformation("Данные о клиенте успешно отредактировны");
+                }
+                SharedClass.OpenNewPage(this, new ListClients());
             }
-            else
+            catch(Exception ex)
             {
-                clientRep.EditClient(Client);
-                SharedClass.MessageBoxInformation("Данные о клиенте успешно отредактировны");
+                SharedClass.MessageBoxError(ex);
             }
-            SharedClass.OpenNewPage(this, new ListClients());
+            
         }
         private void BackClick(object sender, RoutedEventArgs e)
         {
-            SharedClass.OpenNewPage(this, new ListClients());   
+            try {
+                SharedClass.OpenNewPage(this, new ListClients());
+            }
+            catch(Exception ex)
+            {
+                SharedClass.MessageBoxError(ex);
+            }
         }
         private void SelectPhoto(object sender, RoutedEventArgs e)
         {
-            string path = Utilities.SelectImage();
-            if (path != "null")
-                this.ImgClient.Source = new BitmapImage(new Uri(path, UriKind.Relative)); ; 
-                SetPhotoForClient(path); 
-            
+            try
+            {
+                string path = ImageUtilities.SelectImage();
+                if (path != "null")
+                    this.ImgClient.Source = new BitmapImage(new Uri(path, UriKind.Relative)); ;
+                SetPhotoForClient(path);
+            }
+            catch(Exception ex)
+            {
+                SharedClass.MessageBoxError(ex);
+            }
+
         }
+        #endregion
 
         private void SetPhotoForClient(string path)
         {

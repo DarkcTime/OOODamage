@@ -9,19 +9,34 @@ using System.Windows.Navigation;
 
 namespace OOODamage.BackEnd
 {
+    /// <summary>
+    /// Common class for Application
+    /// </summary>
     class SharedClass
     {
+
+        /// <summary>
+        /// View Frame in MainPage 
+        /// </summary>
+        /// <param name="frame">Object frame</param>
+        /// <param name="page"></param>
         public static void SetFrame(Frame frame, Page page)
         {
             frame.Content = page;
         }
 
+        /// <summary>
+        /// Open new page
+        /// </summary>
+        /// <param name="obj">Obj window</param>
+        /// <param name="page">new Page</param>
         public static void OpenNewPage(System.Windows.DependencyObject obj, Page page)
         {
             NavigationService service = NavigationService.GetNavigationService(obj);
             service.Navigate(page);
         }
 
+        #region MessageBox objects
         public static void MessageBoxError(Exception ex)
         {
             MessageBox.Show(ex.Message, ex.HelpLink, MessageBoxButton.OK, MessageBoxImage.Error);
@@ -47,5 +62,6 @@ namespace OOODamage.BackEnd
             MessageBoxResult result = MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Question);
             return result;
         }
+        #endregion 
     }
 }
