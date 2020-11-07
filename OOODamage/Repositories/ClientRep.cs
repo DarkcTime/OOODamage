@@ -1,4 +1,5 @@
-﻿using OOODamage.Models;
+﻿using OOODamage.BackEnd;
+using OOODamage.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,31 @@ namespace OOODamage.Repositories
 
         public void AddClient(Client client)
         {
+            /*
+            if (client.Photo != null)
+            {
+                client.IdPhoto = AddPhotoForClient(client.Photo);
+            }
+            else
+            {
+                client.Photo = "null";
+            } 
+            */
+                    
+            client.RegDate = DateTime.Now; 
+            //context.Clients.First().
             context.Clients.Add(client);
             SaveChanges();
+        }
 
+        public int AddPhotoForClient(string path)
+        {
+            ClientPhoto clientPhoto = new ClientPhoto();
+            clientPhoto.Photo = Utilities.ConvertImageToByte(path);
+            context.ClientPhotoes.Add(clientPhoto);
+            SaveChanges();
+            int idNewPhoto = context.ClientPhotoes.ToList().Max().IdClientPhoto;
+            return idNewPhoto; 
         }
 
         public void EditClient(Client client)

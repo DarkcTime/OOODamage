@@ -9,17 +9,19 @@ namespace OOODamage.Repositories
     class DisplayClientRep : ModelRep
     {
 
-        public  List<DisplayClient> GetDisplayClients(string gender, string search)
+        public  List<DisplayClient> GetDisplayClients(int gender, string search)
         {
             //get uniqu records for clients
             List<ClientService> clientServices = context.ClientServices.GroupBy(x => x.Client).Select(x => x.FirstOrDefault()).ToList();
 
             switch (gender)
             {
-                case "Мужчина":
+                case 0:
+                    break; 
+                case 1:
                     clientServices = clientServices.Where(i => i.Client.IdGender == "м").ToList();
                     break;
-                case "Женщина":
+                case 2:
                     clientServices = clientServices.Where(i => i.Client.IdGender == "ж").ToList();
                     break;
             }

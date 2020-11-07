@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -81,6 +82,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BackEnd\SharedClass.cs" />
+    <Compile Include="BackEnd\Utilities.cs" />
     <Compile Include="Models\BonusCard.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>

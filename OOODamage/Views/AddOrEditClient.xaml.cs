@@ -22,7 +22,7 @@ namespace OOODamage.Views
     /// </summary>
     public partial class AddOrEditClient : Page
     {
-        Client Client;
+        Client Client;       
         private string addStr = "Добавить", editStr = "Сохранить";
         Repositories.ClientRep clientRep = new Repositories.ClientRep();
 
@@ -32,7 +32,8 @@ namespace OOODamage.Views
             Client = new Client();
             this.DataContext = Client;
            
-            MakeLabels(addStr);  
+            MakeLabels(addStr);
+            this.Client.BirhDate = DateTime.Parse("08.08.2020");
         }
 
         public AddOrEditClient(Client client)
@@ -42,7 +43,10 @@ namespace OOODamage.Views
             this.DataContext = Client;
           
             MakeLabels(editStr);
+            SetGenderDisplay(); 
+            
         }
+
 
 
         private void MakeLabels(string type)
@@ -61,6 +65,7 @@ namespace OOODamage.Views
 
         private void EditOrAddClick(object sender, RoutedEventArgs e)
         {
+            SetGenderClient();
             if(this.BtnEditOrAdd.Content.ToString() == addStr)
             {
                 clientRep.AddClient(Client);
@@ -77,5 +82,35 @@ namespace OOODamage.Views
         {
             SharedClass.OpenNewPage(this, new ListClients());   
         }
+        private void SelectPhoto(object sender, RoutedEventArgs e)
+        {
+            string path = Utilities.SelectImage();
+            if (path != "null")
+                this.ImgClient.Source = new BitmapImage(new Uri(path, UriKind.Relative)); ; 
+                SetPhotoForClient(path); 
+            
+        }
+
+        private void SetPhotoForClient(string path)
+        {
+            Client.Photo = path; 
+
+        }
+        private void SetGenderDisplay()
+        {
+            if (this.Client.IdGender == "м") this.Man.IsChecked = true;
+            else this.Woman.IsChecked = true; 
+        }
+        private void SetGenderClient()
+        {
+            if (IsMan()) Client.IdGender = "м";
+            else Client.IdGender = "ж";
+        }
+        private bool IsMan()
+        {
+            return this.Man.IsChecked == true;
+        }
+
+       
     }
 }

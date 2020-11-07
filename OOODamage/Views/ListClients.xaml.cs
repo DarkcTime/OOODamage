@@ -35,7 +35,7 @@ namespace OOODamage.Views
         {
             List<DisplayClient> displayClients = new List<DisplayClient>();
             displayClients = null;
-            displayClients = displayClientRep.GetDisplayClients(this.ComboBoxGender.Text, this.TxtSearch.Text);
+            displayClients = displayClientRep.GetDisplayClients(this.ComboBoxGender.SelectedIndex, this.TxtSearch.Text);
             this.MainDataGrid.ItemsSource = displayClients;
             SetTextBlockCountRecords(displayClientRep.CountRecords(displayClients));
         }
